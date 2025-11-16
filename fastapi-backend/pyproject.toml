@@ -1,0 +1,97 @@
+[project]
+name = "fastapi_backend"
+version = "0.1.0"
+description = "Generic, typed, and streaming FastAPI backend for Cereon Dashboard cards."
+requires-python = ">=3.10"
+authors = [
+  { name = "Aditya Mishra", email = "adimis.sde@gmail.com" }
+]
+keywords = ["fastapi", "streaming", "sse", "websocket", "dashboard", "ndjson", "typed-api"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Framework :: FastAPI",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+
+# Base runtime dependencies
+dependencies = [
+    "langchain-openai>=1.0.0,<2.0.0",
+    "langchain-anthropic>=1.0.0,<2.0.0",
+    "langchain>=1.0.0,<2.0.0",
+    "langchain-core>=1.0.0,<2.0.0",
+    "fastapi>=0.95.0,<1.0.0",
+    "uvicorn[standard]>=0.22.0,<1.0.0",
+    "gunicorn>=20.1.0,<21.0.0",
+    "langgraph-supervisor>=0.0.30",
+    "langgraph-swarm>=0.0.2",
+    "ag-ui-langgraph>=0.0.18",
+    "copilotkit>=0.1.70",
+    "langgraph-cli[inmem]>=0.4.4",
+    "langchain-postgres>=0.0.16",
+    "pgvector>=0.3.6",
+    "psycopg2-binary>=2.9.11",
+    "asyncpg>=0.30.0",
+    "langchain-community>=0.4",
+    "langgraph-checkpoint-postgres>=3.0.0",
+    "psycopg[binary,pool]>=3.2.12",
+    "docker>=7.1.0",
+    "neo4j>=5.25.0,<6.0.0",
+    "asgiref>=3.10.0",
+    "pydantic-settings>=2.11.0",
+    "jsonschema>=4.25.1",
+    "playwright>=1.55.0",
+    "beautifulsoup4>=4.14.2",
+    "celery>=5.5.3",
+    "langchain-neo4j>=0.6.0",
+    "python-jose[cryptography]>=3.5.0",
+    "croniter>=3.0.0,<4.0.0",
+    "redis>=7.0.1",
+    "pytest",
+    "faker>=38.0.0",
+    "cereon-sdk>=0.1.4"
+]
+
+[project.urls]
+Homepage = "https://github.com/adimis-ai/cereon"
+Repository = "https://github.com/adimis-ai/cereon"
+Issues = "https://github.com/adimis-ai/cereon/issues"
+
+# uv build system (PEP 517)
+[build-system]
+requires = ["hatchling>=1.22.0"]
+build-backend = "hatchling.build"
+
+# Formatters / linters
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+
+[tool.isort]
+profile = "black"
+known_first_party = ["fastapi_backend"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I"]
+ignore = ["E501"]
+target-version = "py310"
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.mypy]
+python_version = "3.10"
+warn_unused_configs = true
+warn_return_any = true
+strict_optional = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
