@@ -1,0 +1,13 @@
+
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/fastapi-backend/.venv/bin/python",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/fastapi-backend/src"
+  ],
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/fastapi-backend/src"
+  ],
+  "python.analysis.packageIndexDepths": {
+    "maxDepth": 3
+  }
+}

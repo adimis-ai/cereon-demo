@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@cereon/dashboard':
-        specifier: '>=0.1.6'
-        version: 0.1.6(@types/node@24.10.1)(@types/react-dom@19.2.3(@types/react@19.2.5))(@types/react@19.2.5)(framer-motion@10.18.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(monaco-editor@0.54.0)(react-dom@19.2.0(react@19.2.0))(react-grid-layout@1.5.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)(rollup@4.53.2)(typescript@5.9.3)(vite@7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2))
+        specifier: file:../../cereon-dashboard
+        version: file:../../cereon-dashboard(@types/node@24.10.1)(@types/react-dom@19.2.3(@types/react@19.2.5))(@types/react@19.2.5)(framer-motion@10.18.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(monaco-editor@0.54.0)(react-dom@19.2.0(react@19.2.0))(react-grid-layout@1.5.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)(rollup@4.53.2)(typescript@5.9.3)(vite@7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2))
       '@tailwindcss/vite':
         specifier: ^4.1.17
         version: 4.1.17(vite@7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2))
@@ -174,8 +174,8 @@ packages:
     resolution: {integrity: sha512-qQ5m48eI/MFLQ5PxQj4PFaprjyCTLI37ElWMmNs0K8Lk3dVeOdNpB3ks8jc7yM5CDmVC73eMVk/trk3fgmrUpA==}
     engines: {node: '>=6.9.0'}
 
-  '@cereon/dashboard@0.1.6':
-    resolution: {integrity: sha512-Or/M1yLlka1Bya0/FIr4m1ksXkaBkTROaGSmcKnFSO7fygiYzjC5hLuSySk1F5FcqXDC6pZNbT/U2k+dpo/qjg==}
+  '@cereon/dashboard@file:../../cereon-dashboard':
+    resolution: {directory: ../../cereon-dashboard, type: directory}
     engines: {node: '>=14'}
     peerDependencies:
       framer-motion: '>=10.0.0'
@@ -1185,10 +1185,6 @@ packages:
 
   '@radix-ui/rect@1.1.1':
     resolution: {integrity: sha512-HPwpGIzkl28mWyZqG52jiqDJ12waP11Pa1lGoiyUkIEuMLBP0oeK/C89esbXrxsky5we7dfd8U58nm0SgAWpVw==}
-
-  '@remix-run/router@1.23.1':
-    resolution: {integrity: sha512-vDbaOzF7yT2Qs4vO6XV1MHcJv+3dgR1sT+l3B8xxOVhUC336prMvqrvsLL/9Dnw2xr6Qhz4J0dmS0llNAbnUmQ==}
-    engines: {node: '>=14.0.0'}
 
   '@rolldown/pluginutils@1.0.0-beta.47':
     resolution: {integrity: sha512-8QagwMH3kNCuzD8EWL8R2YPW5e4OrHNSAHRFDdmFqEwEaD/KcNKjVoumo+gP2vW5eKB2UPbM6vTYiGZX0ixLnw==}
@@ -2910,19 +2906,6 @@ packages:
     peerDependencies:
       react: '>= 16.3'
 
-  react-router-dom@6.30.2:
-    resolution: {integrity: sha512-l2OwHn3UUnEVUqc6/1VMmR1cvZryZ3j3NzapC2eUXO1dB0sYp5mvwdjiXhpUbRb21eFow3qSxpP8Yv6oAU824Q==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
-
-  react-router@6.30.2:
-    resolution: {integrity: sha512-H2Bm38Zu1bm8KUE5NVWRMzuIyAV8p/JrOaBJAwVmp37AXG72+CZJlEBw6pdn9i5TBgLMhNDgijS4ZlblpHyWTA==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      react: '>=16.8'
-
   react-smooth@4.0.4:
     resolution: {integrity: sha512-gnGKTpYwqL0Iii09gHobNolvX4Kiq4PKx6eWBCYYix+8cdw+cGo3do906l1NBPKkSWx1DghC1dlWG9L2uGd61Q==}
     peerDependencies:
@@ -3488,7 +3471,7 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
 
-  '@cereon/dashboard@0.1.6(@types/node@24.10.1)(@types/react-dom@19.2.3(@types/react@19.2.5))(@types/react@19.2.5)(framer-motion@10.18.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(monaco-editor@0.54.0)(react-dom@19.2.0(react@19.2.0))(react-grid-layout@1.5.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)(rollup@4.53.2)(typescript@5.9.3)(vite@7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2))':
+  '@cereon/dashboard@file:../../cereon-dashboard(@types/node@24.10.1)(@types/react-dom@19.2.3(@types/react@19.2.5))(@types/react@19.2.5)(framer-motion@10.18.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(monaco-editor@0.54.0)(react-dom@19.2.0(react@19.2.0))(react-grid-layout@1.5.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)(rollup@4.53.2)(typescript@5.9.3)(vite@7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2))':
     dependencies:
       '@dnd-kit/core': 6.3.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@dnd-kit/modifiers': 9.0.0(@dnd-kit/core@6.3.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
@@ -3549,7 +3532,6 @@ snapshots:
       react-grid-layout: 1.5.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react-hook-form: 7.66.0(react@19.2.0)
       react-resizable-panels: 2.1.9(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      react-router-dom: 6.30.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       recharts: 2.15.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       rehype-sanitize: 6.0.0
       remark-gfm: 4.0.1
@@ -4564,8 +4546,6 @@ snapshots:
       '@types/react-dom': 19.2.3(@types/react@19.2.5)
 
   '@radix-ui/rect@1.1.1': {}
-
-  '@remix-run/router@1.23.1': {}
 
   '@rolldown/pluginutils@1.0.0-beta.47': {}
 
@@ -6526,18 +6506,6 @@ snapshots:
       react-draggable: 4.5.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
     transitivePeerDependencies:
       - react-dom
-
-  react-router-dom@6.30.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
-    dependencies:
-      '@remix-run/router': 1.23.1
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
-      react-router: 6.30.2(react@19.2.0)
-
-  react-router@6.30.2(react@19.2.0):
-    dependencies:
-      '@remix-run/router': 1.23.1
-      react: 19.2.0
 
   react-smooth@4.0.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
