@@ -30,15 +30,15 @@ export interface AreaChartSettings extends CommonCardSettings {
 }
 
 export interface AreaChartRecord extends BaseDashboardCardRecord {
-  kind: "tlwc:area";
+  kind: "tvc:area";
   data: Record<string, Array<AreaData<Time> | WhitespaceData<Time>>>;
 }
 
 export interface AreaChartProps
   extends BaseCardProps<
-    "tlwc:area",
-    { "tlwc:area": AreaChartSettings },
-    { "tlwc:area": AreaChartRecord }
+    "tvc:area",
+    { "tvc:area": AreaChartSettings },
+    { "tvc:area": AreaChartRecord }
   > {}
 
 export const AreaChartComponent: React.FC<AreaChartProps> = ({
@@ -207,7 +207,7 @@ export const AreaChartComponent: React.FC<AreaChartProps> = ({
 
   return (
     <div
-      key={`${reportId}-${card.id}-[tlwc:area]-chart`}
+      key={`${reportId}-${card.id}-[tvc:area]-chart`}
       ref={containerRef}
       style={{ width: "100%", height }}
       className={className}
