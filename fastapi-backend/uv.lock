@@ -379,7 +379,7 @@ wheels = [
 
 [[package]]
 name = "cereon-sdk"
-version = "0.1.6"
+version = "0.1.7"
 source = { directory = "../../cereon-sdk" }
 dependencies = [
     { name = "pydantic" },
