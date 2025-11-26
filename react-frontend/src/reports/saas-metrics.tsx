@@ -200,11 +200,6 @@ export const getSaasMetricsReport = (
             { dataKey: "degraded", name: "Degraded", color: "#f97316" },
             { dataKey: "offline", name: "Offline", color: "#ef4444" },
             { dataKey: "maintenance", name: "Maintenance", color: "#60a5fa" },
-            {
-              dataKey: "partial_outage",
-              name: "Partial Outage",
-              color: "#f59e0b",
-            },
             { dataKey: "unknown", name: "Unknown", color: "#94a3b8" },
           ],
           tooltip: { enabled: true },

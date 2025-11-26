@@ -257,7 +257,6 @@ class HealthRadialCard(BaseCard[ChartCardRecord]):
             "degraded": 25,
             "offline": 49,
             "maintenance": 10,
-            "partial_outage": 13,
             "unknown": 22,
         }
 
