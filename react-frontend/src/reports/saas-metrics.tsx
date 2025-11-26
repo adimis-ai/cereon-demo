@@ -42,7 +42,7 @@ export const getSaasMetricsReport = (
     },
     {
       id: "revenue_trend",
-      kind: "line",
+      kind: "recharts:line",
       title: "Revenue Trend",
       description: "MRR / New / Expansion over time",
       gridPosition: { x: 0, y: 4, w: 8, h: 8 } as CardGridPosition,
@@ -69,7 +69,7 @@ export const getSaasMetricsReport = (
     },
     {
       id: "revenue_area_trend",
-      kind: "area",
+      kind: "recharts:area",
       title: "Cumulative Revenue",
       description: "Cumulative revenue and rolling bands",
       gridPosition: { x: 8, y: 4, w: 4, h: 8 } as CardGridPosition,
@@ -95,7 +95,7 @@ export const getSaasMetricsReport = (
     },
     {
       id: "plans_breakdown",
-      kind: "bar",
+      kind: "recharts:bar",
       title: "Plans Breakdown",
       description: "Active users & seats per plan",
       gridPosition: { x: 0, y: 12, w: 6, h: 8 } as CardGridPosition,
@@ -117,7 +117,7 @@ export const getSaasMetricsReport = (
     },
     {
       id: "revenue_share_pie",
-      kind: "pie",
+      kind: "recharts:pie",
       title: "Revenue Share",
       description: "Revenue share by product/plan/channel",
       gridPosition: { x: 6, y: 12, w: 3, h: 6 } as CardGridPosition,
@@ -139,7 +139,7 @@ export const getSaasMetricsReport = (
     },
     {
       id: "health_radial",
-      kind: "radial",
+      kind: "recharts:radial",
       title: "System Health",
       description: "Online / Degraded / Offline",
       gridPosition: { x: 9, y: 12, w: 3, h: 6 } as CardGridPosition,
@@ -158,7 +158,7 @@ export const getSaasMetricsReport = (
     },
     {
       id: "feature_usage_radar",
-      kind: "radar",
+      kind: "recharts:radar",
       title: "Feature Usage",
       description: "Multi-dimension usage profile",
       gridPosition: { x: 6, y: 18, w: 6, h: 6 } as CardGridPosition,

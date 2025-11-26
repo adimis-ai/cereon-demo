@@ -107,7 +107,7 @@ class SaasUserGrowthCard(BaseCard[NumberCardRecord]):
 
 
 class RevenueTrendCard(BaseCard[ChartCardRecord]):
-    kind = "line"
+    kind = "recharts:line"
     card_id = "revenue_trend"
     report_id = "saas_metrics"
     route_prefix = "/cards/revenue_trend"
@@ -133,7 +133,7 @@ class RevenueTrendCard(BaseCard[ChartCardRecord]):
 
 
 class RevenueAreaTrendCard(BaseCard[ChartCardRecord]):
-    kind = "area"
+    kind = "recharts:area"
     card_id = "revenue_area_trend"
     report_id = "saas_metrics"
     route_prefix = "/cards/revenue_area_trend"
@@ -166,7 +166,7 @@ class RevenueAreaTrendCard(BaseCard[ChartCardRecord]):
 
 
 class PlansBreakdownCard(BaseCard[ChartCardRecord]):
-    kind = "bar"
+    kind = "recharts:bar"
     card_id = "plans_breakdown"
     report_id = "saas_metrics"
     route_prefix = "/cards/plans_breakdown"
@@ -191,7 +191,7 @@ class PlansBreakdownCard(BaseCard[ChartCardRecord]):
 
 
 class RevenueSharePieCard(BaseCard[ChartCardRecord]):
-    kind = "pie"
+    kind = "recharts:pie"
     card_id = "revenue_share_pie"
     report_id = "saas_metrics"
     route_prefix = "/cards/revenue_share_pie"
@@ -216,7 +216,7 @@ class RevenueSharePieCard(BaseCard[ChartCardRecord]):
 
 
 class FeatureUsageRadarCard(BaseCard[ChartCardRecord]):
-    kind = "radar"
+    kind = "recharts:radar"
     card_id = "feature_usage_radar"
     report_id = "saas_metrics"
     route_prefix = "/cards/feature_usage_radar"
@@ -241,7 +241,7 @@ class FeatureUsageRadarCard(BaseCard[ChartCardRecord]):
 
 
 class HealthRadialCard(BaseCard[ChartCardRecord]):
-    kind = "radial"
+    kind = "recharts:radial"
     card_id = "health_radial"
     report_id = "saas_metrics"
     route_prefix = "/cards/health_radial"

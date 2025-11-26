@@ -5,6 +5,8 @@ import {
   type DashboardSpec,
   DashboardProvider,
   useDashboard,
+  TableCard,
+  NumberCard
 } from "@cereon/dashboard";
 import { getSaasMetricsReport } from "./reports/saas-metrics";
 import * as charts from "@cereon/recharts";
@@ -19,6 +21,8 @@ function CardRegistrar() {
     registerCard("recharts:pie", charts.PieChartCard);
     registerCard("recharts:radar", charts.RadarChartCard);
     registerCard("recharts:radial", charts.RadialChartCard);
+    registerCard("table", TableCard);
+    registerCard("number", NumberCard);
   }, []);
 
   return null;
@@ -48,7 +52,7 @@ function App() {
       theme={theme}
       setTheme={setTheme}
       state={{
-        activeReportId: "trading-view",
+        activeReportId: "saas_metrics",
         additional: {
           theme: "dark",
           animations: "smooth",
