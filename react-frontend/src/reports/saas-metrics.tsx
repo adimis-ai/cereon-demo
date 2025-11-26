@@ -22,10 +22,19 @@ export const getSaasMetricsReport = (
     {
       id: "mrr_overview",
       kind: "number",
-      title: "MRR Overview",
-      description: "Core KPIs: MRR, ARR and trend",
+      title: "Monthly Recurring Revenue",
+      description: "Total MRR as of last date in series",
       gridPosition: { x: 0, y: 0, w: 3, h: 4 } as CardGridPosition,
-      settings: { number: { large: true } },
+      settings: {
+        number: {
+          large: true,
+          showTrend: true,
+          format: "currency",
+          currency: "USD",
+          decimals: 0,
+          valueColor: "primary",
+        },
+      },
       query: {
         variant: "http",
         payload: { url: `${API_BASE_URL}/cards/mrr_overview`, method: "GET" },
@@ -34,10 +43,18 @@ export const getSaasMetricsReport = (
     {
       id: "saas_user_growth",
       kind: "number",
-      title: "User Growth",
-      description: "DAU / WAU / MAU and activation",
+      title: "Daily Active Users",
+      description: "Number of users active in the last 24 hours",
       gridPosition: { x: 3, y: 0, w: 3, h: 4 } as CardGridPosition,
-      settings: { number: {} },
+      settings: {
+        number: {
+          showTrend: true,
+          format: "number",
+          decimals: 0,
+          unit: "users",
+          valueColor: "success",
+        },
+      },
       query: {
         variant: "http",
         payload: {
