@@ -5,7 +5,6 @@ import {
   type DashboardSpec,
   DashboardProvider,
 } from "@cereon/dashboard";
-import { getTradingViewReport } from "./reports/TrandingView";
 
 function App() {
   const dashboardSpec: DashboardSpec = useMemo(() => {
@@ -18,8 +17,8 @@ function App() {
         defaultRefreshInterval: 5000,
         maxConcurrentQueries: 8,
       },
-      reports: [getTradingViewReport()],
-    } as DashboardSpec;
+      reports: []
+    };
   }, []);
 
   const { theme, setTheme } = useTheme();
