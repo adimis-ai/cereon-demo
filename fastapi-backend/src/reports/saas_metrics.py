@@ -38,7 +38,7 @@ class MrrOverviewCard(BaseCard[NumberCardRecord]):
     kind = "number"
     card_id = "mrr_overview"
     report_id = "saas_metrics"
-    route_prefix = "/cards/mrr_overview"
+    route_prefix = "/cards"
     response_model = NumberCardRecord
     transport = "http"
 
@@ -71,7 +71,7 @@ class SaasUserGrowthCard(BaseCard[NumberCardRecord]):
     kind = "number"
     card_id = "saas_user_growth"
     report_id = "saas_metrics"
-    route_prefix = "/cards/saas_user_growth"
+    route_prefix = "/cards"
     response_model = NumberCardRecord
     transport = "http"
 
@@ -110,7 +110,7 @@ class RevenueTrendCard(BaseCard[ChartCardRecord]):
     kind = "recharts:line"
     card_id = "revenue_trend"
     report_id = "saas_metrics"
-    route_prefix = "/cards/revenue_trend"
+    route_prefix = "/cards"
     response_model = ChartCardRecord
     transport = "streaming-http"
 
@@ -136,7 +136,7 @@ class RevenueAreaTrendCard(BaseCard[ChartCardRecord]):
     kind = "recharts:area"
     card_id = "revenue_area_trend"
     report_id = "saas_metrics"
-    route_prefix = "/cards/revenue_area_trend"
+    route_prefix = "/cards"
     response_model = ChartCardRecord
     transport = "streaming-http"
 
@@ -169,7 +169,7 @@ class PlansBreakdownCard(BaseCard[ChartCardRecord]):
     kind = "recharts:bar"
     card_id = "plans_breakdown"
     report_id = "saas_metrics"
-    route_prefix = "/cards/plans_breakdown"
+    route_prefix = "/cards"
     response_model = ChartCardRecord
     transport = "http"
 
@@ -194,7 +194,7 @@ class RevenueSharePieCard(BaseCard[ChartCardRecord]):
     kind = "recharts:pie"
     card_id = "revenue_share_pie"
     report_id = "saas_metrics"
-    route_prefix = "/cards/revenue_share_pie"
+    route_prefix = "/cards"
     response_model = ChartCardRecord
     transport = "http"
 
@@ -219,7 +219,7 @@ class FeatureUsageRadarCard(BaseCard[ChartCardRecord]):
     kind = "recharts:radar"
     card_id = "feature_usage_radar"
     report_id = "saas_metrics"
-    route_prefix = "/cards/feature_usage_radar"
+    route_prefix = "/cards"
     response_model = ChartCardRecord
     transport = "http"
 
@@ -244,7 +244,7 @@ class HealthRadialCard(BaseCard[ChartCardRecord]):
     kind = "recharts:radial"
     card_id = "health_radial"
     report_id = "saas_metrics"
-    route_prefix = "/cards/health_radial"
+    route_prefix = "/cards"
     response_model = ChartCardRecord
     transport = "http"
 
@@ -268,7 +268,7 @@ class ChurnCohortCard(BaseCard[TableCardRecord]):
     kind = "table"
     card_id = "churn_cohort"
     report_id = "saas_metrics"
-    route_prefix = "/cards/churn_cohort"
+    route_prefix = "/cards"
     response_model = TableCardRecord
     transport = "http"
 
