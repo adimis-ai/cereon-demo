@@ -1,0 +1,203 @@
+import type {
+  DashboardReportSpec,
+  CardGridPosition,
+  AnyDashboardReportCardSpec,
+  DashboardTheme,
+} from "@cereon/dashboard";
+
+export const getSaasMetricsReport = (
+  theme: DashboardTheme
+): DashboardReportSpec => {
+  const id = "saas_metrics";
+  const title = "SaaS Metrics";
+
+  // Futuristic bento-box layout: mix of small KPI tiles and larger charts
+  const cards: AnyDashboardReportCardSpec<
+    Record<string, any>,
+    Record<string, any>
+  >[] = [
+    {
+      id: "mrr_overview",
+      kind: "number",
+      title: "MRR Overview",
+      description: "Core KPIs: MRR, ARR and trend",
+      gridPosition: { x: 0, y: 0, w: 3, h: 4 } as CardGridPosition,
+      settings: { number: { large: true } },
+      query: {
+        variant: "http",
+        payload: { url: "/cards/mrr_overview", method: "GET" },
+      },
+    },
+    {
+      id: "saas_user_growth",
+      kind: "number",
+      title: "User Growth",
+      description: "DAU / WAU / MAU and activation",
+      gridPosition: { x: 3, y: 0, w: 3, h: 4 } as CardGridPosition,
+      settings: { number: {} },
+      query: {
+        variant: "http",
+        payload: { url: "/cards/saas_user_growth", method: "GET" },
+      },
+    },
+    {
+      id: "revenue_trend",
+      kind: "line",
+      title: "Revenue Trend",
+      description: "MRR / New / Expansion over time",
+      gridPosition: { x: 0, y: 4, w: 8, h: 8 } as CardGridPosition,
+      settings: {
+        chartConfig: {
+          type: "line",
+          data: [],
+          curve: "monotone",
+          xAxis: { label: { value: "date" }, scale: "time" },
+          yAxis: { tick: { formatter: (v: number) => (v >= 1000 ? `${v / 1000}k` : `${v}`) } },
+          series: [
+            { dataKey: "mrr", name: "MRR", color: "#3b82f6" },
+            { dataKey: "new", name: "New", color: "#10b981" },
+            { dataKey: "expansion", name: "Expansion", color: "#f97316" },
+          ],
+          tooltip: { enabled: true },
+          legend: { enabled: true },
+        },
+      },
+      query: {
+        variant: "streaming-http",
+        payload: { url: "/cards/revenue_trend", method: "GET", streamFormat: "ndjson", streamDelimiter: "\n" },
+      },
+    },
+    {
+      id: "revenue_area_trend",
+      kind: "area",
+      title: "Cumulative Revenue",
+      description: "Cumulative revenue and rolling bands",
+      gridPosition: { x: 8, y: 4, w: 4, h: 8 } as CardGridPosition,
+      settings: {
+        chartConfig: {
+          type: "area",
+          data: [],
+          stacking: "none",
+          curve: "natural",
+          xAxis: { label: { value: "date" }, scale: "time" },
+          series: [
+            { dataKey: "cumulative_mrr", name: "Cumulative MRR", color: "#3b82f6", gradient: { enabled: true } },
+            { dataKey: "rolling_new", name: "Rolling New (7d)", color: "#10b981" },
+          ],
+          tooltip: { enabled: true },
+          legend: { enabled: false },
+        },
+      },
+      query: {
+        variant: "streaming-http",
+        payload: { url: "/cards/revenue_area_trend", method: "GET", streamFormat: "ndjson", streamDelimiter: "\n" },
+      },
+    },
+    {
+      id: "plans_breakdown",
+      kind: "bar",
+      title: "Plans Breakdown",
+      description: "Active users & seats per plan",
+      gridPosition: { x: 0, y: 12, w: 6, h: 8 } as CardGridPosition,
+      settings: {
+        chartConfig: {
+          type: "bar",
+          data: [],
+          grouping: "grouped",
+          xAxis: { label: { value: "plan" } },
+          series: [
+            { dataKey: "active_users", name: "Active Users", color: "#06b6d4" },
+            { dataKey: "seats", name: "Seats", color: "#ef4444" },
+          ],
+          tooltip: { enabled: true },
+          legend: { enabled: true },
+        },
+      },
+      query: { variant: "http", payload: { url: "/cards/plans_breakdown", method: "GET" } },
+    },
+    {
+      id: "revenue_share_pie",
+      kind: "pie",
+      title: "Revenue Share",
+      description: "Revenue share by product/plan/channel",
+      gridPosition: { x: 6, y: 12, w: 3, h: 6 } as CardGridPosition,
+      settings: {
+        chartConfig: {
+          type: "pie",
+          data: [],
+          variant: "donut",
+          nameKey: "name",
+          valueKey: "value",
+          innerRadius: "40%",
+          outerRadius: "80%",
+          colors: ["#3b82f6", "#10b981", "#f97316", "#a78bfa"],
+          tooltip: { enabled: true },
+          legend: { enabled: true },
+        },
+      },
+      query: { variant: "http", payload: { url: "/cards/revenue_share_pie", method: "GET" } },
+    },
+    {
+      id: "health_radial",
+      kind: "radial",
+      title: "System Health",
+      description: "Online / Degraded / Offline",
+      gridPosition: { x: 9, y: 12, w: 3, h: 6 } as CardGridPosition,
+      settings: {
+        chartConfig: {
+          type: "radial",
+          data: [],
+          variant: "bar",
+          innerRadius: "20%",
+          outerRadius: "90%",
+          series: [{ dataKey: "value", name: "status", color: "#3b82f6" }],
+          tooltip: { enabled: true },
+        },
+      },
+      query: { variant: "http", payload: { url: "/cards/health_radial", method: "GET" } },
+    },
+    {
+      id: "feature_usage_radar",
+      kind: "radar",
+      title: "Feature Usage",
+      description: "Multi-dimension usage profile",
+      gridPosition: { x: 6, y: 18, w: 6, h: 6 } as CardGridPosition,
+      settings: {
+        chartConfig: {
+          type: "radar",
+          data: [],
+          polarAngleAxis: { label: { value: "subject" } },
+          series: [
+            { dataKey: "core", name: "Core", color: "#3b82f6" },
+            { dataKey: "advanced", name: "Advanced", color: "#f97316" },
+          ],
+          tooltip: { enabled: true },
+          legend: { enabled: true },
+        },
+      },
+      query: { variant: "http", payload: { url: "/cards/feature_usage_radar", method: "GET" } },
+    },
+    {
+      id: "churn_cohort",
+      kind: "table",
+      title: "Churn Cohort",
+      description: "Cohort retention matrix",
+      gridPosition: { x: 0, y: 20, w: 12, h: 10 } as CardGridPosition,
+      settings: { table: { enablePagination: true } },
+      query: { variant: "http", payload: { url: "/cards/churn_cohort", method: "GET" } },
+    },
+  ];
+
+  return {
+    id,
+    title,
+    theme,
+    layout: {
+      strategy: "grid",
+      columns: 12,
+      rowHeight: 60,
+      margin: [16, 16],
+    },
+    reportCards: cards,
+  };
+};
