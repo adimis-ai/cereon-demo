@@ -119,20 +119,17 @@ class RevenueTrendCard(BaseCard[ChartCardRecord]):
         # Stream time series in chunks (simulate streaming-http)
         series = _generate_revenue_series(90)
 
-        async def _gen():
-            chunk_size = 7
-            for i in range(0, len(series), chunk_size):
-                chunk = series[: i + chunk_size]
-                payload = {
-                    "kind": "line",
-                    "report_id": cls.report_id,
-                    "card_id": cls.card_id,
-                    "data": {"data": chunk},
-                    "meta": {"startedAt": datetime.utcnow().isoformat() + "Z"},
-                }
-                yield cls.response_model(**payload)
-
-        return _gen()
+        chunk_size = 7
+        for i in range(0, len(series), chunk_size):
+            chunk = series[: i + chunk_size]
+            payload = {
+                "kind": "line",
+                "report_id": cls.report_id,
+                "card_id": cls.card_id,
+                "data": {"data": chunk},
+                "meta": {"startedAt": datetime.utcnow().isoformat() + "Z"},
+            }
+            yield cls.response_model(**payload)
 
 
 class RevenueAreaTrendCard(BaseCard[ChartCardRecord]):
@@ -146,28 +143,26 @@ class RevenueAreaTrendCard(BaseCard[ChartCardRecord]):
     @classmethod
     async def handler(cls, ctx=None) -> AsyncIterable[ChartCardRecord]:
         series = _generate_revenue_series(90)
-
-        async def _gen():
-            # yield cumulative view
-            cumulative = []
-            for i, row in enumerate(series):
-                cumulative.append(
-                    {
-                        "date": row["date"],
-                        "cumulative_mrr": row["mrr"],
-                        "rolling_new": sum(r["new"] for r in series[max(0, i - 6) : i + 1]),
-                    }
-                )
-                if i % 7 == 0:
-                    payload = {
-                        "kind": "area",
-                        "report_id": cls.report_id,
-                        "card_id": cls.card_id,
-                        "data": {"data": cumulative.copy()},
-                    }
-                    yield cls.response_model(**payload)
-
-        return _gen()
+        # yield cumulative view in weekly chunks to simulate streaming
+        cumulative = []
+        for i, row in enumerate(series):
+            cumulative.append(
+                {
+                    "date": row["date"],
+                    "cumulative_mrr": row["mrr"],
+                    "rolling_new": sum(r["new"] for r in series[max(0, i - 6) : i + 1]),
+                }
+            )
+            # yield every 7 items or at the end
+            if (i + 1) % 7 == 0 or i == len(series) - 1:
+                payload = {
+                    "kind": "area",
+                    "report_id": cls.report_id,
+                    "card_id": cls.card_id,
+                    "data": {"data": list(cumulative)},
+                    "meta": {"startedAt": datetime.utcnow().isoformat() + "Z"},
+                }
+                yield cls.response_model(**payload)
 
 
 class PlansBreakdownCard(BaseCard[ChartCardRecord]):
