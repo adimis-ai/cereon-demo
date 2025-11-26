@@ -1,11 +1,28 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useTheme } from "./contexts/theme-provider";
 import {
   Dashboard,
   type DashboardSpec,
   DashboardProvider,
+  useDashboard,
 } from "@cereon/dashboard";
 import { getSaasMetricsReport } from "./reports/saas-metrics";
+import * as charts from "@cereon/recharts";
+
+function CardRegistrar() {
+  const { registerCard } = useDashboard();
+
+  useEffect(() => {
+    registerCard("recharts:line", charts.LineChartCard);
+    registerCard("recharts:area", charts.AreaChartCard);
+    registerCard("recharts:bar", charts.BarChartCard);
+    registerCard("recharts:pie", charts.PieChartCard);
+    registerCard("recharts:radar", charts.RadarChartCard);
+    registerCard("recharts:radial", charts.RadialChartCard);
+  }, []);
+
+  return null;
+}
 
 function App() {
   const { theme, setTheme } = useTheme();
@@ -38,6 +55,7 @@ function App() {
         },
       }}
     >
+      <CardRegistrar />
       <Dashboard />
     </DashboardProvider>
   );
