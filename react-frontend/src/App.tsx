@@ -5,8 +5,11 @@ import {
   type DashboardSpec,
   DashboardProvider,
 } from "@cereon/dashboard";
+import { getSaasMetricsReport } from "./reports/saas-metrics";
 
 function App() {
+  const { theme, setTheme } = useTheme();
+
   const dashboardSpec: DashboardSpec = useMemo(() => {
     return {
       id: "cereon-demo",
@@ -16,12 +19,11 @@ function App() {
         animations: "smooth",
         defaultRefreshInterval: 5000,
         maxConcurrentQueries: 8,
+        theme: theme,
       },
-      reports: []
+      reports: [getSaasMetricsReport(theme)],
     };
   }, []);
-
-  const { theme, setTheme } = useTheme();
 
   return (
     <DashboardProvider
