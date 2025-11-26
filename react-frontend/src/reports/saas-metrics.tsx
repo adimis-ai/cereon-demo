@@ -72,7 +72,6 @@ export const getSaasMetricsReport = (
       settings: {
         chartConfig: {
           type: "line",
-          data: [],
           curve: "monotone",
           series: [
             { dataKey: "mrr", name: "MRR", color: "#3b82f6" },
@@ -103,7 +102,6 @@ export const getSaasMetricsReport = (
       settings: {
         chartConfig: {
           type: "area",
-          data: [],
           stacking: "none",
           curve: "natural",
           series: [
@@ -142,7 +140,6 @@ export const getSaasMetricsReport = (
       settings: {
         chartConfig: {
           type: "bar",
-          data: [],
           grouping: "grouped",
           xAxis: { label: { value: "plan" } },
           series: [
@@ -170,7 +167,6 @@ export const getSaasMetricsReport = (
       settings: {
         chartConfig: {
           type: "pie",
-          data: [],
           variant: "donut",
           nameKey: "name",
           valueKey: "value",
@@ -198,12 +194,21 @@ export const getSaasMetricsReport = (
       settings: {
         chartConfig: {
           type: "radial",
-          data: [],
           variant: "bar",
-          innerRadius: "20%",
-          outerRadius: "90%",
-          series: [{ dataKey: "value", name: "status", color: "#3b82f6" }],
+          series: [
+            { dataKey: "online", name: "Online", color: "#10b981" },
+            { dataKey: "degraded", name: "Degraded", color: "#f97316" },
+            { dataKey: "offline", name: "Offline", color: "#ef4444" },
+            { dataKey: "maintenance", name: "Maintenance", color: "#60a5fa" },
+            {
+              dataKey: "partial_outage",
+              name: "Partial Outage",
+              color: "#f59e0b",
+            },
+            { dataKey: "unknown", name: "Unknown", color: "#94a3b8" },
+          ],
           tooltip: { enabled: true },
+          legend: { enabled: true },
         },
       },
       query: {
@@ -220,7 +225,6 @@ export const getSaasMetricsReport = (
       settings: {
         chartConfig: {
           type: "radar",
-          data: [],
           polarAngleAxis: { label: { value: "subject" } },
           series: [
             { dataKey: "core", name: "Core", color: "#3b82f6" },

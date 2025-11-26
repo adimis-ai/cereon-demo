@@ -252,16 +252,20 @@ class HealthRadialCard(BaseCard[ChartCardRecord]):
 
     @classmethod
     async def handler(cls, ctx=None) -> List[ChartCardRecord]:
-        data = [
-            {"name": "Online", "value": 92},
-            {"name": "Degraded", "value": 5},
-            {"name": "Offline", "value": 3},
-        ]
+        data_point = {
+            "online": 82,
+            "degraded": 25,
+            "offline": 49,
+            "maintenance": 10,
+            "partial_outage": 13,
+            "unknown": 22,
+        }
+
         payload = {
             "kind": "radial",
             "report_id": cls.report_id,
             "card_id": cls.card_id,
-            "data": {"data": data},
+            "data": {"data": [data_point]},
         }
         return [cls.response_model(**payload)]
 
