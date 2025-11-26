@@ -202,6 +202,8 @@ export const getSaasMetricsReport = (
           ],
           tooltip: { enabled: true },
           legend: { enabled: true },
+          outerRadius: "100%",
+          innerRadius: "40%",
         },
       },
       query: {
