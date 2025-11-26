@@ -59,7 +59,6 @@ class MrrOverviewCard(BaseCard[NumberCardRecord]):
                 "value": latest,
                 "previousValue": prev,
                 "label": "Monthly Recurring Revenue",
-                "description": "Total MRR as of last date in series",
                 "meta": {"unit": "USD", "as_of": series[-1]["date"]},
                 "trendPercentage": round(delta_pct, 2),
             },
@@ -93,7 +92,6 @@ class SaasUserGrowthCard(BaseCard[NumberCardRecord]):
                 "value": dau,
                 "previousValue": dau - 120,
                 "label": "Daily Active Users",
-                "description": "Number of users active in the last 24 hours",
                 "meta": {
                     "dau": dau,
                     "wau": wau,

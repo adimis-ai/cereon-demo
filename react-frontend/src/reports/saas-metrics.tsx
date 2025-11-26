@@ -23,7 +23,6 @@ export const getSaasMetricsReport = (
       id: "mrr_overview",
       kind: "number",
       title: "Monthly Recurring Revenue",
-      description: "Total MRR as of last date in series",
       gridPosition: { x: 0, y: 0, w: 3, h: 2 } as CardGridPosition,
       settings: {
         number: {
@@ -44,7 +43,6 @@ export const getSaasMetricsReport = (
       id: "saas_user_growth",
       kind: "number",
       title: "Daily Active Users",
-      description: "Number of users active in the last 24 hours",
       gridPosition: { x: 3, y: 0, w: 3, h: 2 } as CardGridPosition,
       settings: {
         number: {
