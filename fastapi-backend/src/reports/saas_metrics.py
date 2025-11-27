@@ -95,10 +95,7 @@ class MrrOverviewCard(BaseCard[NumberCardRecord]):
     @classmethod
     async def handler(cls, ctx=None) -> List[NumberCardRecord]:
         # Compute basic KPIs from generated series
-        filters = cls._get_filters_from_ctx(ctx)
-
         series = _generate_revenue_series(28)
-        series = _apply_filters_to_series(series, filters)
         latest = series[-1]["mrr"] if series else 0
         prev = series[-2]["mrr"] if len(series) > 1 else None
 
@@ -168,10 +165,7 @@ class RevenueTrendCard(BaseCard[ChartCardRecord]):
     @classmethod
     async def handler(cls, ctx=None) -> AsyncIterable[ChartCardRecord]:
         # Stream time series in chunks (simulate streaming-http)
-        filters = cls._get_filters_from_ctx(ctx)
-
         series = _generate_revenue_series(28)
-        series = _apply_filters_to_series(series, filters)
 
         chunk_size = 7
         # send non-overlapping chunks to reduce repeated payloads
@@ -197,10 +191,7 @@ class RevenueAreaTrendCard(BaseCard[ChartCardRecord]):
 
     @classmethod
     async def handler(cls, ctx=None) -> AsyncIterable[ChartCardRecord]:
-        filters = cls._get_filters_from_ctx(ctx)
-
         series = _generate_revenue_series(28)
-        series = _apply_filters_to_series(series, filters)
         # yield recent weekly windows (max 7 items) to avoid sending full cumulative history
         for i in range(0, len(series), 7):
             window = series[i : i + 7]
@@ -232,19 +223,13 @@ class PlansBreakdownCard(BaseCard[ChartCardRecord]):
 
     @classmethod
     async def handler(cls, ctx=None) -> List[ChartCardRecord]:
-        filters = cls._get_filters_from_ctx(ctx)
-
         data = [
             {"plan": "Free", "active_users": 1200, "seats": 1200},
             {"plan": "Startup", "active_users": 800, "seats": 2400},
             {"plan": "Growth", "active_users": 420, "seats": 2520},
             {"plan": "Enterprise", "active_users": 80, "seats": 1600},
         ]
-        # apply simple plan filter
-        if filters and isinstance(filters, dict):
-            plan = filters.get("plan")
-            if plan:
-                data = [d for d in data if d.get("plan") == plan]
+        # no server-side filters for this demo card (frontend controls view)
 
         payload = {
             "kind": "bar",
@@ -265,19 +250,13 @@ class RevenueSharePieCard(BaseCard[ChartCardRecord]):
 
     @classmethod
     async def handler(cls, ctx=None) -> List[ChartCardRecord]:
-        filters = cls._get_filters_from_ctx(ctx)
-
         data = [
             {"name": "Product A", "value": 56000},
             {"name": "Product B", "value": 32000},
             {"name": "Service", "value": 12000},
             {"name": "Channel", "value": 8000},
         ]
-        # allow product filter
-        if filters and isinstance(filters, dict):
-            product = filters.get("product")
-            if product:
-                data = [d for d in data if d.get("name") == product]
+        # no server-side filters for this demo card
 
         payload = {
             "kind": "pie",
@@ -298,19 +277,13 @@ class FeatureUsageRadarCard(BaseCard[ChartCardRecord]):
 
     @classmethod
     async def handler(cls, ctx=None) -> List[ChartCardRecord]:
-        filters = cls._get_filters_from_ctx(ctx)
-
         data = [
             {"subject": "Onboarding", "core": 80, "advanced": 60},
             {"subject": "Reporting", "core": 70, "advanced": 40},
             {"subject": "Integrations", "core": 65, "advanced": 55},
             {"subject": "API", "core": 50, "advanced": 30},
         ]
-        # optional subject filter
-        if filters and isinstance(filters, dict):
-            subject = filters.get("subject")
-            if subject:
-                data = [d for d in data if d.get("subject") == subject]
+        # no server-side filters for this demo card
 
         payload = {
             "kind": "radar",
@@ -331,8 +304,6 @@ class HealthRadialCard(BaseCard[ChartCardRecord]):
 
     @classmethod
     async def handler(cls, ctx=None) -> List[ChartCardRecord]:
-        filters = cls._get_filters_from_ctx(ctx)
-
         data_point = {
             "online": 82,
             "degraded": 25,
@@ -340,14 +311,7 @@ class HealthRadialCard(BaseCard[ChartCardRecord]):
             "maintenance": 10,
             "unknown": 22,
         }
-        # allow thresholding via min_value to hide low-state counts
-        if filters and isinstance(filters, dict):
-            try:
-                min_v = int(filters.get("min_value")) if "min_value" in filters else None
-            except Exception:
-                min_v = None
-            if min_v is not None:
-                data_point = {k: v for k, v in data_point.items() if v >= min_v}
+        # no server-side filters for this demo card
 
         payload = {
             "kind": "radial",
@@ -369,7 +333,7 @@ class ChurnCohortCard(BaseCard[TableCardRecord]):
     @classmethod
     async def handler(cls, ctx=None) -> List[TableCardRecord]:
         filters = cls._get_filters_from_ctx(ctx)
-        print("[ChurnCohortCard] Cohort filters:", filters)
+        print("[ChurnCohortCard] Cohort filters:", type(filters), filters)
 
         rows = []
         # smaller cohort months to reduce payload

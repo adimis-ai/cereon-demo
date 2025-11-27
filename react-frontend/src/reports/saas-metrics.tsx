@@ -39,22 +39,6 @@ export const getSaasMetricsReport = (
       title: "Monthly Recurring Revenue",
       gridPosition: { x: 0, y: 0, w: 3, h: 2 } as CardGridPosition,
       settings: {
-        filters: {
-          schema: [
-            {
-              name: "start_date",
-              label: "Start Date",
-              variant: "text",
-              placeholder: "YYYY-MM-DD",
-            },
-            {
-              name: "end_date",
-              label: "End Date",
-              variant: "text",
-              placeholder: "YYYY-MM-DD",
-            },
-          ],
-        },
         number: {
           large: true,
           showTrend: true,
@@ -69,12 +53,7 @@ export const getSaasMetricsReport = (
         payload: {
           url: `${API_BASE_URL}/cards/mrr_overview`,
           method: "GET",
-          params: {
-            filters: {
-              start_date: "${{ runtime.filters.start_date }}",
-              end_date: "${{ runtime.filters.end_date }}",
-            },
-          },
+          params: {},
         },
       },
     },
@@ -118,28 +97,7 @@ export const getSaasMetricsReport = (
           tooltip: { enabled: true },
           legend: { enabled: true },
         },
-        filters: {
-          schema: [
-            {
-              name: "start_date",
-              label: "Start Date",
-              variant: "text",
-              placeholder: "YYYY-MM-DD",
-            },
-            {
-              name: "end_date",
-              label: "End Date",
-              variant: "text",
-              placeholder: "YYYY-MM-DD",
-            },
-            {
-              name: "min_value",
-              label: "Min Value",
-              variant: "number",
-              placeholder: "minimum MRR",
-            },
-          ],
-        },
+        
       },
       query: {
         variant: "streaming-http",
@@ -148,13 +106,7 @@ export const getSaasMetricsReport = (
           method: "GET",
           streamFormat: "ndjson",
           streamDelimiter: "\n",
-          params: {
-            filters: {
-              start_date: "${{ runtime.filters.start_date }}",
-              end_date: "${{ runtime.filters.end_date }}",
-              min_value: "${{ runtime.filters.min_value }}",
-            },
-          },
+          params: {},
         },
       },
     },
@@ -186,22 +138,7 @@ export const getSaasMetricsReport = (
           tooltip: { enabled: true },
           legend: { enabled: false },
         },
-        filters: {
-          schema: [
-            {
-              name: "start_date",
-              label: "Start Date",
-              variant: "text",
-              placeholder: "YYYY-MM-DD",
-            },
-            {
-              name: "end_date",
-              label: "End Date",
-              variant: "text",
-              placeholder: "YYYY-MM-DD",
-            },
-          ],
-        },
+        
       },
       query: {
         variant: "streaming-http",
@@ -210,12 +147,7 @@ export const getSaasMetricsReport = (
           method: "GET",
           streamFormat: "ndjson",
           streamDelimiter: "\n",
-          params: {
-            filters: {
-              start_date: "${{ runtime.filters.start_date }}",
-              end_date: "${{ runtime.filters.end_date }}",
-            },
-          },
+          params: {},
         },
       },
     },
@@ -237,31 +169,14 @@ export const getSaasMetricsReport = (
           tooltip: { enabled: true },
           legend: { enabled: true },
         },
-        filters: {
-          schema: [
-            {
-              name: "plan",
-              label: "Plan",
-              variant: "select",
-              options: [
-                { label: "All", value: "" },
-                { label: "Free", value: "Free" },
-                { label: "Startup", value: "Startup" },
-                { label: "Growth", value: "Growth" },
-                { label: "Enterprise", value: "Enterprise" },
-              ],
-            },
-          ],
-        },
+        
       },
       query: {
         variant: "http",
         payload: {
           url: `${API_BASE_URL}/cards/plans_breakdown`,
           method: "GET",
-          params: {
-            filters: { plan: "${{ runtime.filters.plan }}" },
-          },
+          params: {},
         },
       },
     },
@@ -283,31 +198,14 @@ export const getSaasMetricsReport = (
           tooltip: { enabled: true },
           legend: { enabled: true },
         },
-        filters: {
-          schema: [
-            {
-              name: "product",
-              label: "Product",
-              variant: "select",
-              options: [
-                { label: "All", value: "" },
-                { label: "Product A", value: "Product A" },
-                { label: "Product B", value: "Product B" },
-                { label: "Service", value: "Service" },
-                { label: "Channel", value: "Channel" },
-              ],
-            },
-          ],
-        },
+        
       },
       query: {
         variant: "http",
         payload: {
           url: `${API_BASE_URL}/cards/revenue_share_pie`,
           method: "GET",
-          params: {
-            filters: { product: "${{ runtime.filters.product }}" },
-          },
+          params: {},
         },
       },
     },
@@ -333,25 +231,14 @@ export const getSaasMetricsReport = (
           outerRadius: "100%",
           innerRadius: "40%",
         },
-        filters: {
-          schema: [
-            {
-              name: "min_value",
-              label: "Min Threshold",
-              variant: "number",
-              placeholder: "hide under this value",
-            },
-          ],
-        },
+        
       },
       query: {
         variant: "http",
         payload: {
           url: `${API_BASE_URL}/cards/health_radial`,
           method: "GET",
-          params: {
-            filters: { min_value: "${{ runtime.filters.min_value }}" },
-          },
+          params: {},
         },
       },
     },
@@ -372,31 +259,14 @@ export const getSaasMetricsReport = (
           tooltip: { enabled: true },
           legend: { enabled: true },
         },
-        filters: {
-          schema: [
-            {
-              name: "subject",
-              label: "Subject",
-              variant: "select",
-              options: [
-                { label: "All", value: "" },
-                { label: "Onboarding", value: "Onboarding" },
-                { label: "Reporting", value: "Reporting" },
-                { label: "Integrations", value: "Integrations" },
-                { label: "API", value: "API" },
-              ],
-            },
-          ],
-        },
+        
       },
       query: {
         variant: "http",
         payload: {
           url: `${API_BASE_URL}/cards/feature_usage_radar`,
           method: "GET",
-          params: {
-            filters: { subject: "${{ runtime.filters.subject }}" },
-          },
+          params: {},
         },
       },
     },
