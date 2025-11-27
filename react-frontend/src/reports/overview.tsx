@@ -20,7 +20,7 @@ export const getOverviewReport = (
   theme: DashboardTheme
 ): DashboardReportSpec => {
   const id = "overview";
-  const title = "Overview";
+  const title = "Packages Overview";
 
   const cards: AnyDashboardReportCardSpec<
     Record<string, any>,

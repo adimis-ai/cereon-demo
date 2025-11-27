@@ -12,7 +12,7 @@ export const getSaasMetricsReport = (
   theme: DashboardTheme
 ): DashboardReportSpec => {
   const id = "saas_metrics";
-  const title = "SaaS Metrics";
+  const title = "SaaS Metrics Demo";
 
   // Futuristic bento-box layout: mix of small KPI tiles and larger charts
   const cards: AnyDashboardReportCardSpec<
