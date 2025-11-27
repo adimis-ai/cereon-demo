@@ -25,9 +25,9 @@ export const getSaasMetricsReport = (
       title: "Dashboard Summary",
       panel: false,
       transparent: true,
-      gridPosition: { x: 0, y: 0, w: 12, h: 3.5 } as CardGridPosition,
+      gridPosition: { x: 0, y: 0, w: 12, h: 1 } as CardGridPosition,
       settings: {
-        defaultContent: "",
+        defaultContent: "This dashboard presents a compact SaaS metrics demo showcasing key financial, product, and system-health indicators, including MRR, user activity, revenue trends, plan distributions, feature usage, churn cohorts, and real-time performance signals. It combines fast-updating KPIs with streaming line/area charts and multi-dimensional visualizations to illustrate how Cereon dashboards handle live data, complex compositions, and diverse metric types in a single unified report.",
         markdownTheme: "auto",
         enableTables: true,
       },

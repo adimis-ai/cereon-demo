@@ -24,15 +24,11 @@ export const getOverviewReport = (
     title: "Project Summary",
     panel: false,
     transparent: true,
-    gridPosition: { x: 0, y: 0, w: 12, h: 3.5 } as CardGridPosition,
+    gridPosition: { x: 0, y: 0, w: 12, h: 2 } as CardGridPosition,
     settings: {
-      defaultContent:
-        `# Cereon Projects Overview\n\nThis dashboard highlights key signals for the Cereon open-source projects: ` +
-        "`@cereon/dashboard`, `@cereon/recharts`, and `cereon-sdk`.\n\n" +
-        "- Area chart: package downloads (last 30 days)\n" +
-        "- Line chart: commit activity (last 30 days)\n" +
-        "- Horizontal bar chart: repository stars (current)\n\n" +
-        "Data refreshes periodically from the demo backend.",
+      defaultContent: `# Cereon Packages Overview
+
+This demo uses three packages that work together to deliver full-stack dashboards: **@cereon/dashboard** provides the frontend layout system and card infrastructure, **@cereon/recharts** adds chart components that plug directly into those cards, and **cereon-sdk** supplies the Python backend layer for typed, real-time card endpoints. In short: dashboard = UI, recharts = visualizations, sdk = backend data layer.`,
       markdownTheme: "auto",
       enableTables: true,
     },
