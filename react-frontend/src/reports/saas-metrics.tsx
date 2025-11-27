@@ -305,6 +305,44 @@ export const getSaasMetricsReport = (
         },
       },
     },
+    // Streaming version of the churn cohort table to demonstrate streaming-http
+    {
+      id: "churn_cohort_stream",
+      kind: "table",
+      title: "Churn Cohort (Streaming)",
+      description: "Cohort retention matrix (streaming)",
+      gridPosition: { x: 6, y: 16, w: 6, h: 8 } as CardGridPosition,
+      settings: {
+        table: { enablePagination: true },
+        filters: {
+          schema: [
+            {
+              name: "cohort_month",
+              label: "Cohort Month",
+              variant: "select",
+              options: [
+                { label: "All", value: "" },
+                { label: "2025-01", value: "2025-01" },
+                { label: "2025-02", value: "2025-02" },
+                { label: "2025-03", value: "2025-03" },
+              ],
+            },
+          ],
+        },
+      },
+      query: {
+        variant: "streaming-http",
+        payload: {
+          url: `${API_BASE_URL}/cards/churn_cohort_stream`,
+          method: "GET",
+          streamFormat: "ndjson",
+          streamDelimiter: "\n",
+          params: {
+            filters: { cohort_month: "${{ runtime.filters.cohort_month }}" },
+          },
+        },
+      },
+    },
   ];
 
   return {

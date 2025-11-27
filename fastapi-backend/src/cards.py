@@ -8,6 +8,7 @@ from reports.saas_metrics import (
     FeatureUsageRadarCard,
     HealthRadialCard,
     ChurnCohortCard,
+    ChurnCohortStreamCard,
 )
 from reports.overview import (
     PackageDownloadsAreaCard,
@@ -29,4 +30,5 @@ ALL_OVERVIEW_CARDS = [
     PackageDownloadsAreaCard,
     PackageCommitsLineCard,
     PackageLikesBarCard,
+    ChurnCohortStreamCard,
 ]

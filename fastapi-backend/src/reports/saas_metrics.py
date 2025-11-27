@@ -356,3 +356,40 @@ class ChurnCohortCard(BaseCard[TableCardRecord]):
             "data": {"rows": rows, "columns": list(rows[0].keys()) if rows else []},
         }
         return [cls.response_model(**payload)]
+
+
+class ChurnCohortStreamCard(BaseCard[TableCardRecord]):
+    kind = "table"
+    card_id = "churn_cohort_stream"
+    report_id = "saas_metrics"
+    route_prefix = "/cards"
+    response_model = TableCardRecord
+    transport = "streaming-http"
+
+    @classmethod
+    async def handler(cls, ctx=None) -> AsyncIterable[TableCardRecord]:
+        # stream cohort rows in small chunks to simulate server-sent streaming
+        filters = cls._get_filters_from_ctx(ctx)
+
+        # build full small dataset like the non-streaming handler
+        rows = []
+        for m in range(3):
+            row = {"cohort_month": f"2025-0{m+1}", "month_0": 1.0}
+            for off in range(1, 3):
+                row[f"month_{off}"] = round(1.0 - 0.1 * off - 0.02 * m, 2)
+            rows.append(row)
+
+        cohort = filters.get("cohort_month", None)
+        if cohort:
+            rows = [r for r in rows if r.get("cohort_month") == cohort]
+
+        # stream one row per chunk as a minimal demonstration
+        for r in rows:
+            payload = {
+                "kind": "table",
+                "report_id": cls.report_id,
+                "card_id": cls.card_id,
+                "data": {"rows": [r], "columns": list(r.keys())},
+                "meta": {"streamedAt": datetime.utcnow().isoformat() + "Z"},
+            }
+            yield cls.response_model(**payload)
