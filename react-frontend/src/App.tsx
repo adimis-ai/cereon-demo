@@ -6,10 +6,11 @@ import {
   DashboardProvider,
   useDashboard,
   TableCard,
-  NumberCard
+  NumberCard,
 } from "@cereon/dashboard";
 import { getSaasMetricsReport } from "./reports/saas-metrics";
 import * as charts from "@cereon/recharts";
+import { getOverviewReport } from "./reports/overview";
 
 function CardRegistrar() {
   const { registerCard } = useDashboard();
@@ -42,7 +43,7 @@ function App() {
         maxConcurrentQueries: 8,
         theme: theme,
       },
-      reports: [getSaasMetricsReport(theme)],
+      reports: [getOverviewReport(theme), getSaasMetricsReport(theme)],
     };
   }, []);
 
@@ -52,7 +53,7 @@ function App() {
       theme={theme}
       setTheme={setTheme}
       state={{
-        activeReportId: "saas_metrics",
+        activeReportId: "overview",
         additional: {
           theme: "dark",
           animations: "smooth",
