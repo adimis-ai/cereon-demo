@@ -9,7 +9,7 @@ from reports.saas_metrics import (
     HealthRadialCard,
     ChurnCohortCard,
 )
-from reports.summary import (
+from reports.overview import (
     PackageDownloadsAreaCard,
     PackageCommitsLineCard,
     PackageLikesBarCard,
