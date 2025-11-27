@@ -368,8 +368,6 @@ class ChurnCohortCard(BaseCard[TableCardRecord]):
 
     @classmethod
     async def handler(cls, ctx=None) -> List[TableCardRecord]:
-        print("[ChurnCohortCard] Handler invoked, ctx:", ctx)
-        # Simple static cohort matrix
         filters = cls._get_filters_from_ctx(ctx)
         print("[ChurnCohortCard] Cohort filters:", filters)
 
