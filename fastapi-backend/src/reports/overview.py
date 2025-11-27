@@ -20,7 +20,7 @@ import httpx
 
 load_dotenv()
 
-USE_MOCK_DATA = os.getenv("USE_MOCK_DATA", "true").lower() == "true"
+USE_MOCK_DATA = os.getenv("USE_MOCK_DATA", "false").lower() == "true"
 
 CONFIG = {
     "tokens": {
