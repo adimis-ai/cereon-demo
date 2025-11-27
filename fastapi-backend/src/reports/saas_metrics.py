@@ -342,11 +342,12 @@ class ChurnCohortCard(BaseCard[TableCardRecord]):
             for off in range(1, 3):
                 row[f"month_{off}"] = round(1.0 - 0.1 * off - 0.02 * m, 2)
             rows.append(row)
-        # optional filter to limit to recent cohorts
-        if filters and isinstance(filters, dict):
-            cohort = filters.get("cohort_month")
-            if cohort:
-                rows = [r for r in rows if r.get("cohort_month") == cohort]
+
+        cohort = filters.get("cohort_month", None)
+        print("[ChurnCohortCard] Applying cohort filter:", cohort, rows[0])
+        if cohort:
+            rows = [r for r in rows if r.get("cohort_month") == cohort]
+            print("[ChurnCohortCard] Filtered rows:", rows)
 
         payload = {
             "kind": "table",
