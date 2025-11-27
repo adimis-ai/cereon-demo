@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@cereon/dashboard": "file:../../cereon-dashboard",
-    "@cereon/recharts": "file:../../cereon-recharts",
+    "@cereon/dashboard": "^0.2.1",
+    "@cereon/recharts": "^0.1.2",
     "@tailwindcss/vite": "^4.1.17",
     "@vitejs/plugin-react": "^5.1.1",
     "class-variance-authority": "^0.7.1",
