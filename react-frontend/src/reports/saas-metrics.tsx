@@ -97,7 +97,6 @@ export const getSaasMetricsReport = (
           tooltip: { enabled: true },
           legend: { enabled: true },
         },
-        
       },
       query: {
         variant: "streaming-http",
@@ -138,7 +137,6 @@ export const getSaasMetricsReport = (
           tooltip: { enabled: true },
           legend: { enabled: false },
         },
-        
       },
       query: {
         variant: "streaming-http",
@@ -169,7 +167,6 @@ export const getSaasMetricsReport = (
           tooltip: { enabled: true },
           legend: { enabled: true },
         },
-        
       },
       query: {
         variant: "http",
@@ -198,7 +195,6 @@ export const getSaasMetricsReport = (
           tooltip: { enabled: true },
           legend: { enabled: true },
         },
-        
       },
       query: {
         variant: "http",
@@ -231,7 +227,6 @@ export const getSaasMetricsReport = (
           outerRadius: "100%",
           innerRadius: "40%",
         },
-        
       },
       query: {
         variant: "http",
@@ -259,7 +254,6 @@ export const getSaasMetricsReport = (
           tooltip: { enabled: true },
           legend: { enabled: true },
         },
-        
       },
       query: {
         variant: "http",
@@ -277,7 +271,7 @@ export const getSaasMetricsReport = (
       description: "Cohort retention matrix",
       gridPosition: { x: 0, y: 16, w: 6, h: 8 } as CardGridPosition,
       settings: {
-        table: { enablePagination: true },
+        indexColumn: "id",
         filters: {
           schema: [
             {
@@ -313,7 +307,7 @@ export const getSaasMetricsReport = (
       description: "Cohort retention matrix (streaming)",
       gridPosition: { x: 6, y: 16, w: 6, h: 8 } as CardGridPosition,
       settings: {
-        table: { enablePagination: true },
+        indexColumn: "id",
         filters: {
           schema: [
             {

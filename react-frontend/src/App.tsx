@@ -5,13 +5,13 @@ import {
   type DashboardSpec,
   DashboardProvider,
   useDashboard,
-  TableCard,
   NumberCard,
   MarkdownCard,
 } from "@cereon/dashboard";
 import { getSaasMetricsReport } from "./reports/saas-metrics";
 import * as charts from "@cereon/recharts";
 import { getOverviewReport } from "./reports/overview";
+import TableCard from "./cards/table";
 
 function CardRegistrar() {
   const { registerCard } = useDashboard();

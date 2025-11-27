@@ -338,7 +338,7 @@ class ChurnCohortCard(BaseCard[TableCardRecord]):
         rows = []
         # smaller cohort months to reduce payload
         for m in range(3):
-            row = {"cohort_month": f"2025-0{m+1}", "month_0": 1.0}
+            row = {"id": m, "cohort_month": f"2025-0{m+1}", "month_0": 1.0}
             for off in range(1, 3):
                 row[f"month_{off}"] = round(1.0 - 0.1 * off - 0.02 * m, 2)
             rows.append(row)
@@ -374,7 +374,7 @@ class ChurnCohortStreamCard(BaseCard[TableCardRecord]):
         # build full small dataset like the non-streaming handler
         rows = []
         for m in range(3):
-            row = {"cohort_month": f"2025-0{m+1}", "month_0": 1.0}
+            row = {"id": m, "cohort_month": f"2025-0{m+1}", "month_0": 1.0}
             for off in range(1, 3):
                 row[f"month_{off}"] = round(1.0 - 0.1 * off - 0.02 * m, 2)
             rows.append(row)
