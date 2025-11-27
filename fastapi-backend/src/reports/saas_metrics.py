@@ -400,6 +400,7 @@ class ChurnCohortCard(BaseCard[TableCardRecord]):
         filters = None
         if isinstance(ctx, dict):
             filters = ctx.get("filters") or ctx.get("params")
+        print("[ChurnCohortCard] Cohort filters:", filters)
 
         rows = []
         # smaller cohort months to reduce payload

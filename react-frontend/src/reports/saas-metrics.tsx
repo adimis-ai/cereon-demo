@@ -70,7 +70,10 @@ export const getSaasMetricsReport = (
           url: `${API_BASE_URL}/cards/mrr_overview`,
           method: "GET",
           params: {
-            /* filters placeholder */
+            filters: {
+              start_date: "${{ runtime.filters.start_date }}",
+              end_date: "${{ runtime.filters.end_date }}",
+            },
           },
         },
       },
@@ -81,16 +84,6 @@ export const getSaasMetricsReport = (
       title: "Daily Active Users",
       gridPosition: { x: 3, y: 0, w: 3, h: 2 } as CardGridPosition,
       settings: {
-        filters: {
-          schema: [
-            {
-              name: "cohort_month",
-              label: "Cohort Month",
-              variant: "text",
-              placeholder: "YYYY-MM",
-            },
-          ],
-        },
         number: {
           showTrend: true,
           format: "number",
@@ -104,9 +97,6 @@ export const getSaasMetricsReport = (
         payload: {
           url: `${API_BASE_URL}/cards/saas_user_growth`,
           method: "GET",
-          params: {
-            /* filters placeholder */
-          },
         },
       },
     },
@@ -159,7 +149,11 @@ export const getSaasMetricsReport = (
           streamFormat: "ndjson",
           streamDelimiter: "\n",
           params: {
-            /* filters placeholder: start_date, end_date, min_value */
+            filters: {
+              start_date: "${{ runtime.filters.start_date }}",
+              end_date: "${{ runtime.filters.end_date }}",
+              min_value: "${{ runtime.filters.min_value }}",
+            },
           },
         },
       },
@@ -217,7 +211,10 @@ export const getSaasMetricsReport = (
           streamFormat: "ndjson",
           streamDelimiter: "\n",
           params: {
-            /* filters placeholder: start_date, end_date */
+            filters: {
+              start_date: "${{ runtime.filters.start_date }}",
+              end_date: "${{ runtime.filters.end_date }}",
+            },
           },
         },
       },
@@ -263,7 +260,7 @@ export const getSaasMetricsReport = (
           url: `${API_BASE_URL}/cards/plans_breakdown`,
           method: "GET",
           params: {
-            /* filters placeholder: plan */
+            filters: { plan: "${{ runtime.filters.plan }}" },
           },
         },
       },
@@ -309,7 +306,7 @@ export const getSaasMetricsReport = (
           url: `${API_BASE_URL}/cards/revenue_share_pie`,
           method: "GET",
           params: {
-            /* filters placeholder: product */
+            filters: { product: "${{ runtime.filters.product }}" },
           },
         },
       },
@@ -349,7 +346,13 @@ export const getSaasMetricsReport = (
       },
       query: {
         variant: "http",
-        payload: { url: `${API_BASE_URL}/cards/health_radial`, method: "GET" },
+        payload: {
+          url: `${API_BASE_URL}/cards/health_radial`,
+          method: "GET",
+          params: {
+            filters: { min_value: "${{ runtime.filters.min_value }}" },
+          },
+        },
       },
     },
     {
@@ -392,7 +395,7 @@ export const getSaasMetricsReport = (
           url: `${API_BASE_URL}/cards/feature_usage_radar`,
           method: "GET",
           params: {
-            /* subject */
+            filters: { subject: "${{ runtime.filters.subject }}" },
           },
         },
       },
@@ -427,7 +430,7 @@ export const getSaasMetricsReport = (
           url: `${API_BASE_URL}/cards/churn_cohort`,
           method: "GET",
           params: {
-            /* cohort_month */
+            filters: { cohort_month: "${{ runtime.filters.cohort_month }}" },
           },
         },
       },
