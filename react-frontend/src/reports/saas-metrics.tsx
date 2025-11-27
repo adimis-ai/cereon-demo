@@ -242,7 +242,7 @@ export const getSaasMetricsReport = (
       kind: "recharts:radar",
       title: "Feature Usage",
       description: "Multi-dimension usage profile",
-      gridPosition: { x: 0, y: 18, w: 6, h: 6 } as CardGridPosition,
+      gridPosition: { x: 0, y: 18, w: 6, h:10 } as CardGridPosition,
       settings: {
         chartConfig: {
           type: "radar",
@@ -305,7 +305,7 @@ export const getSaasMetricsReport = (
       kind: "table",
       title: "Churn Cohort (Streaming)",
       description: "Cohort retention matrix (streaming)",
-      gridPosition: { x: 6, y: 16, w: 6, h: 8 } as CardGridPosition,
+      gridPosition: { x: 6, y: 0, w: 6, h: 4 } as CardGridPosition,
       settings: {
         indexColumn: "id",
         filters: {

@@ -336,8 +336,8 @@ class ChurnCohortCard(BaseCard[TableCardRecord]):
         print("[ChurnCohortCard] Cohort filters:", type(filters), filters)
 
         rows = []
-        # smaller cohort months to reduce payload
-        for m in range(3):
+        # larger cohort months to increase payload
+        for m in range(20):
             row = {"id": m + 1, "cohort_month": f"2025-0{m+1}", "month_0": 1.0}
             for off in range(1, 3):
                 row[f"month_{off}"] = round(1.0 - 0.1 * off - 0.02 * m, 2)
